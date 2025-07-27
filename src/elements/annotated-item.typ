@@ -4,6 +4,12 @@
 
 
 /// An item with an annotation that hangs in the left margin.
+/// ```example
+/// #set page(margin: (left: 1.5in), width: 4.5in, height: 2in)
+/// #annotated_item(title: "Annotated Item", subtitle: "Subtitle of the item")[
+///     The body of an item that is well annotated.
+/// ]
+/// ```
 #let annotated_item = e.element.declare(
   "annotated-item",
   prefix: PREFIX,

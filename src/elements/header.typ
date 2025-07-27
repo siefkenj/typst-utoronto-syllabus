@@ -1,4 +1,3 @@
-
 #import "../types.typ": *
 #import "../settings.typ": *
 
