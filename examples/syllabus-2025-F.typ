@@ -6,6 +6,7 @@
   code: "Mat 244",
   name: "Differential Equations",
   term: "Fall 2025",
+  font_sans: it => text(font: "GeosansLight", baseline: -0.3em, it),
   term_start_date: datetime(year: 2025, month: 9, day: 2),
   term_end_date: datetime(year: 2025, month: 12, day: 2),
   tutorial_start_date: datetime(year: 2025, month: 9, day: 16),

@@ -67,7 +67,7 @@
     ),
   ),
   casts: (
-    (from: function, with: font_declaration => func => font_declaration(font)),
+    (from: function, with: font_declaration => func => font_declaration(func)),
     (from: str, with: font_declaration => font_name => font_declaration(it => text(font: font_name, it))),
     (
       from: e.types.array(str),

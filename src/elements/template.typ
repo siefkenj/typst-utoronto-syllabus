@@ -7,6 +7,9 @@
 /// The syllabus template. Use with `#show: template`
 #let template(doc) = e.get(get => {
   let opts = get(settings)
+  let sans = opts.font_sans.font
+  let mono = opts.font_mono.font
+
 
   set page(
     paper: "us-letter",
@@ -26,12 +29,11 @@
     height: 4pt,
     fill: opts.colors.primary,
   )))
-  show link: it => text(
+  show link: it => mono(text(
     fill: opts.colors.primary,
-    font: opts.font_mono,
     size: 0.83em,
     it,
-  )
+  ))
   show heading: set text(fill: opts.colors.primary)
   show heading.where(level: 2): it => {
     set text(weight: "regular")

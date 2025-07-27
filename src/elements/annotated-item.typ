@@ -16,6 +16,7 @@
   doc: "An item with an annotation that hangs in the left margin",
   display: it => e.get(get => {
     let opts = get(settings)
+    let sans = opts.font_sans.font
 
     // The part that goes in the margin
     let annotation = block(
@@ -26,12 +27,12 @@
         set align(right)
         set par(leading: 0.3em, justify: false)
         let items = (
-          text(font: opts.font_sans, size: 1.2em, baseline: -.3em, {
+          sans(text(size: 1.2em, {
             it.title
-          }),
+          })),
         )
         if it.subtitle != none {
-          items.push(text(font: opts.font, size: .85em, fill: gray.darken(10%), {
+          items.push(text(size: .85em, fill: gray.darken(10%), {
             it.subtitle
           }))
         }

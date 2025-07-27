@@ -79,6 +79,7 @@
   doc: "A weekly timetable for the course, including homeworks, midterms, and holidays.",
   display: it => e.get(get => {
     let opts = get(settings)
+    let sans = opts.font_sans.font
     // Typst uses `1` to represent Monday
     let week_start_day = (
       "monday": 1,
@@ -164,7 +165,7 @@
     })
     let after_classes = if after_classes_events.len() > 0 {
       (
-        text(font: opts.font_sans, size: 1.2em, baseline: -.3em, [After Classes]),
+        sans(text(size: 1.2em, [After Classes])),
         content_and_events(events: after_classes_events),
       )
     } else { () }
@@ -184,7 +185,7 @@
         .map(data => {
           (
             [
-              #text(font: opts.font_sans, size: 1.2em, baseline: -.3em, [Week #data.week_num])
+              #(opts.font_sans.font)(text(size: 1.2em, [Week #data.week_num]))
               #text(fill: gray.darken(20%), format_week_range(start: data.bounds.start, end: data.bounds.end))],
             {
               content_and_events(

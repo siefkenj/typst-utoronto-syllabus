@@ -34,6 +34,7 @@
   doc: "A table for displaying basic information in the syllabus.",
   display: it => e.get(get => {
     let opts = get(settings)
+    let sans = opts.font_sans.font
 
     let basic_info = opts.basic_info
     if opts.tutorial_start_date != none {
@@ -47,7 +48,7 @@
       show table.cell: it => {
         // Make the headings sans-serif
         if calc.rem(it.x, 3) == 0 {
-          text(fill: gray.darken(10%), font: opts.font_sans, baseline: -.3em, (it))
+          sans(text(fill: gray.darken(10%), it))
         } else {
           it
         }

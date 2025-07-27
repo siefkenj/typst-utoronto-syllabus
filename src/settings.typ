@@ -45,17 +45,17 @@
     e.field("colors", colors_type, doc: "Colors used in the syllabus", default: colors_type()),
     e.field(
       "font_mono",
-      e.types.union(str, e.types.array(str)),
+      fond_declaration,
       doc: "Monospace font for links",
       default: "DejaVu Sans Mono",
     ),
     e.field(
       "font_sans",
-      e.types.union(str, e.types.array(str)),
+      fond_declaration,
       doc: "Sans-serif font for headings",
-      default: "GeosansLight",
+      default: "Arial",
     ),
-    e.field("font", e.types.union(str, e.types.array(str)), doc: "Serif font for body text", default: "DejaVu Serif"),
+    e.field("font", fond_declaration, doc: "Serif font for body text", default: "DejaVu Serif"),
     e.field(
       "gutter_width",
       length,
