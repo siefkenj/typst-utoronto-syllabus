@@ -125,10 +125,9 @@
         + opts.holidays.map(h => {
           // Make sure that every holiday has a type "holiday"
           if h.at("type", default: none) == none {
-            h.set("type", "holiday")
-          } else {
-            h
+            h.insert("type", "holiday")
           }
+          h
         })
     )
 
@@ -214,3 +213,54 @@
   ),
 )
 
+
+/// An example
+#{
+  show: e.set_(
+    settings,
+    term_start_date: datetime(year: 2025, month: 1, day: 1),
+    term_end_date: datetime(year: 2025, month: 2, day: 28),
+    holidays: (
+      (
+        name: [Special Day],
+        date: datetime(year: 2025, month: 2, day: 15),
+        key: "special-day",
+      ),
+    ),
+    events: (
+      (
+        name: [Midterm 1],
+        date: datetime(
+          year: 2025,
+          month: 1,
+          day: 7,
+          hour: 17,
+          minute: 10,
+          second: 0,
+        ),
+        type: "test",
+        key: "midterm-1",
+      ),
+      (
+        name: [Homework 1],
+        date: datetime(year: 2025, month: 1, day: 22),
+        type: "homework",
+        key: "hw-1",
+      ),
+      (
+        name: [Homework 2],
+        date: datetime(year: 2025, month: 1, day: 29),
+        type: "homework",
+        key: "hw-2",
+      ),
+    ),
+  )
+
+  timetable(week_start_day: "wednesday", weekly_data: (
+    [hi there],
+    [This is the first week of the course. We will cover the basics of Typst],
+    [This is the first week of the course. We will cover the basics of Typst],
+    [This is the first week of the course. We will cover the basics of Typst],
+    [This is the first week of the course. We will cover the basics of Typst],
+  ))
+}

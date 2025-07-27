@@ -34,13 +34,25 @@
 }
 
 /// Determine if a date is in a range, before a range, or after a range.
-#let date_in_range(date, start, end) = {
+///
+/// -> "before" | "during" | "after"
+#let date_in_range(
+  /// Datetime in question
+  /// -> datetime
+  date,
+  /// Start of the range
+  /// -> datetime
+  start,
+  /// End of the range
+  /// -> datetime
+  end,
+) = {
   let date = date_to_datetime(date)
   let start = date_to_datetime(start)
   // If `end` has no hours, we want to add a day to it so that being in range (2025-9-30 to 2025-9-30)
   // is actually possible.
   let end = if end.hour() == none {
-    date_to_datetime(end + duration(days: 1, seconds: -1))
+    date_to_datetime(end) + duration(days: 1, seconds: -1)
   } else {
     date_to_datetime(end)
   }
@@ -70,7 +82,11 @@
 }
 
 /// Format an event as a string. If the event includes a duration, it will be formatted with a start and end.
-#let format_event_date(ev) = {
+#let format_event_date(
+  /// The event to format. This should be an `event` type.
+  /// -> event
+  ev,
+) = {
   let (_, ev) = e.types.cast(ev, event)
   let start = ev.date
   let has_hours = start.hour() != none
