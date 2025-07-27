@@ -1,3 +1,4 @@
+#import "types.typ": *
 
 //
 // UTILITY FUNCTIONS
@@ -55,7 +56,7 @@
 
 /// Format a range of weeks into a human-readable string. For example `October 3-9`. If a month
 /// boundary is crossed, the month is included in the end date. For example `September 26-October 3`.
-/// 
+///
 /// -> content
 #let _format_week_range(start: datetime.today(), end: datetime.today()) = {
   let start_formatted = start.display("[month repr:long]") + [~] + start.display("[day padding:none]")
