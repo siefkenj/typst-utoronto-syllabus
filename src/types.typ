@@ -51,3 +51,28 @@
   ),
   casts: ((from: dictionary),),
 )
+
+/// A type that declares a font function. This can be coerced
+/// from a string, an array of strings, or a function that returns `content`.
+#let fond_declaration = e.types.declare(
+  "font-declaration",
+  prefix: PREFIX,
+  doc: "A type that declares a font function. This can be coerced from a string, an array of strings, or a function that returns `content`.",
+  fields: (
+    e.field(
+      "font",
+      function,
+      doc: "The font declaration; this will be a function that returns content (i.e. appropriately formatted text)",
+      required: true,
+    ),
+  ),
+  casts: (
+    (from: function, with: font_declaration => func => font_declaration(font)),
+    (from: str, with: font_declaration => font_name => font_declaration(it => text(font: font_name, it))),
+    (
+      from: e.types.array(str),
+      with: font_declaration => font_names => font_declaration(it => text(font: font_names, it)),
+    ),
+    // (from: e.types.array(str)),
+  ),
+)
