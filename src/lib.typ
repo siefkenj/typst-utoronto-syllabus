@@ -1,0 +1,1 @@
+#import "_syllabus-template.typ": *
