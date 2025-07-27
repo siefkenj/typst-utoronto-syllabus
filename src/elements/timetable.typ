@@ -29,7 +29,7 @@
     events
       .at("holiday")
       .map(h => {
-        text(weight: "bold", [#h.name #_format_event_date(h) (no classes)\ ])
+        text(weight: "bold", [#h.name #format_event_date(h) (no classes)\ ])
       })
       .join([])
 
@@ -41,19 +41,19 @@
     events
       .at("test")
       .map(e => text(weight: "bold", fill: opts.colors.primary, [
-        #e.name #_format_event_date(e)\
+        #e.name #format_event_date(e)\
       ]))
       .join([])
     events
       .at("homework")
       .map(e => text(fill: opts.colors.secondary, [
-        #e.name #_format_event_date(e)\
+        #e.name #format_event_date(e)\
       ]))
       .join([])
     events
       .at("other")
       .map(e => text(fill: opts.colors.tertiary, [
-        #e.name #_format_event_date(e)\
+        #e.name #format_event_date(e)\
       ]))
       .join([])
   }),
@@ -137,7 +137,7 @@
       .map(((i, week)) => {
         let events_in_range = all_events.filter(e => {
           // Check if the event is in the range of the week
-          _date_in_range(e.date, week.start, week.end) == "during"
+          date_in_range(e.date, week.start, week.end) == "during"
         })
         (
           // Display number for the week
@@ -151,7 +151,7 @@
     // If there are any events that take place before classes, we add a cell
     // and display them.
     let before_classes_events = all_events.filter(e => {
-      _date_in_range(e.date, opts.term_start_date, opts.term_start_date) == "before"
+      date_in_range(e.date, opts.term_start_date, opts.term_start_date) == "before"
     })
     let before_classes = if before_classes_events.len() > 0 {
       (
@@ -161,7 +161,7 @@
     } else { () }
 
     let after_classes_events = all_events.filter(e => {
-      _date_in_range(e.date, opts.term_end_date, opts.term_end_date) == "after"
+      date_in_range(e.date, opts.term_end_date, opts.term_end_date) == "after"
     })
     let after_classes = if after_classes_events.len() > 0 {
       (
@@ -186,7 +186,7 @@
           (
             [
               #text(font: opts.font_sans, size: 1.2em, baseline: -.3em, [Week #data.week_num])
-              #text(fill: gray.darken(20%), _format_week_range(start: data.bounds.start, end: data.bounds.end))],
+              #text(fill: gray.darken(20%), format_week_range(start: data.bounds.start, end: data.bounds.end))],
             {
               content_and_events(
                 content: data.content,

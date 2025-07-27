@@ -29,7 +29,7 @@
     let opts = get(settings)
     let event = opts.at(event_name, default: NOT_FOUND_SENTINEL)
     if event != NOT_FOUND_SENTINEL {
-      return _format_date(event)
+      return format_date(event)
     }
     // Not found in the settings, so we look in the events and holidays
     let all_events = opts.events + opts.holidays
@@ -50,6 +50,6 @@
     }
 
 
-    _format_event_date(event)
+    format_event_date(event)
   })
 }

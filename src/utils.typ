@@ -5,13 +5,13 @@
 //
 
 /// Format a date for display in the syllabus.
-#let _format_date(date) = {
+#let format_date(date) = {
   let (_, date) = e.types.cast(date, datetime)
   date.display("[weekday], [month repr:short]. [day]")
 }
 
 /// Format a date's time for display in the syllabus.
-#let _format_hours(date) = {
+#let format_hours(date) = {
   let (_, date) = e.types.cast(date, datetime)
   date.display("[hour repr:12 padding:none]:[minute][period case:lower]")
 }
@@ -22,7 +22,7 @@
 ///
 /// - date (date): The date to convert to a datetime.
 /// -> datetime
-#let _date_to_datetime(date) = {
+#let date_to_datetime(date) = {
   datetime(
     year: date.year() + 0,
     month: date.month() + 0,
@@ -34,15 +34,15 @@
 }
 
 /// Determine if a date is in a range, before a range, or after a range.
-#let _date_in_range(date, start, end) = {
-  let date = _date_to_datetime(date)
-  let start = _date_to_datetime(start)
+#let date_in_range(date, start, end) = {
+  let date = date_to_datetime(date)
+  let start = date_to_datetime(start)
   // If `end` has no hours, we want to add a day to it so that being in range (2025-9-30 to 2025-9-30)
   // is actually possible.
   let end = if end.hour() == none {
-    _date_to_datetime(end + duration(days: 1, seconds: -1))
+    date_to_datetime(end + duration(days: 1, seconds: -1))
   } else {
-    _date_to_datetime(end)
+    date_to_datetime(end)
   }
 
   if date < start {
@@ -58,7 +58,7 @@
 /// boundary is crossed, the month is included in the end date. For example `September 26-October 3`.
 ///
 /// -> content
-#let _format_week_range(start: datetime.today(), end: datetime.today()) = {
+#let format_week_range(start: datetime.today(), end: datetime.today()) = {
   let start_formatted = start.display("[month repr:long]") + [~] + start.display("[day padding:none]")
   let multi_month = start.month() != end.month()
   let end_formatted = if multi_month {
@@ -70,7 +70,7 @@
 }
 
 /// Format an event as a string. If the event includes a duration, it will be formatted with a start and end.
-#let _format_event_date(ev) = {
+#let format_event_date(ev) = {
   let (_, ev) = e.types.cast(ev, event)
   let start = ev.date
   let has_hours = start.hour() != none
@@ -82,21 +82,21 @@
 
 
     if multi_day_event == false and has_hours {
-      _format_date(start) + " from " + _format_hours(start) + " to " + _format_hours(end)
+      format_date(start) + " from " + format_hours(start) + " to " + format_hours(end)
     } else if multi_day_event {
       if has_hours {
         (
-          _format_date(start) + " at " + _format_hours(start) + " to " + _format_date(end) + " at " + _format_hours(end)
+          format_date(start) + " at " + format_hours(start) + " to " + format_date(end) + " at " + format_hours(end)
         )
       } else {
-        _format_date(start) + " to " + _format_date(end)
+        format_date(start) + " to " + format_date(end)
       }
     }
   } else {
     if has_hours {
-      _format_date(start) + " at " + _format_hours(start)
+      format_date(start) + " at " + format_hours(start)
     } else {
-      _format_date(start)
+      format_date(start)
     }
   }
 }
