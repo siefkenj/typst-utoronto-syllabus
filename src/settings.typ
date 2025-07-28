@@ -3,7 +3,7 @@
 
 /// Settings for the syllabus template.
 #let settings = e.element.declare(
-  "syllabus-settings",
+  "syllabus_settings",
   prefix: PREFIX,
   doc: "Settings for the syllabus template.",
 

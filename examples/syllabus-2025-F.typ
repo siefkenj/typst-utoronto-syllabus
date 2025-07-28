@@ -237,7 +237,8 @@ There are several lecture sections. (R means Thursday)
 
 #context {
   show table.cell.where(y: 0): strong
-  let w = page.width - page.margin.left - page.margin.right
+  //let w = page.width - page.margin.left - page.margin.right
+  let w = page.width - 2in
   pad(left: calc.min(w - 6.8in, 0pt), table(
     align: center,
     stroke: 0.5pt,

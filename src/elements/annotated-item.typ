@@ -11,7 +11,7 @@
 /// ]
 /// ```
 #let annotated_item = e.element.declare(
-  "annotated-item",
+  "annotated_item",
   prefix: PREFIX,
   doc: "An item with an annotation that hangs in the left margin",
   display: it => e.get(get => {
