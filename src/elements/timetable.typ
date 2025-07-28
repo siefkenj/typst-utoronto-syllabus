@@ -91,7 +91,9 @@
       "sunday": 7,
     ).at(it.week_start_day, default: 1)
     // Create an array with one day for every day of the semester.
-    let all_semester_days = range(int((opts.term_end_date - opts.term_start_date).days()) + 1).map(i => {
+    let all_semester_days = range(
+      int((opts.term_end_date - opts.term_start_date).days()) + 1,
+    ).map(i => {
       opts.term_start_date + duration(days: i)
     })
 
@@ -184,9 +186,16 @@
       ..weekly_content
         .map(data => {
           (
-            [
-              #(opts.font_sans.font)(text(size: 1.2em, [Week #data.week_num]))
-              #text(fill: gray.darken(20%), format_week_range(start: data.bounds.start, end: data.bounds.end))],
+            {
+              align(horizon, stack(
+                spacing: 0.3em,
+                (opts.font_sans.font)(text(size: 1.2em, [Week #data.week_num])),
+                text(fill: gray.darken(20%), format_week_range(
+                  start: data.bounds.start,
+                  end: data.bounds.end,
+                )),
+              ))
+            },
             {
               content_and_events(
                 content: data.content,

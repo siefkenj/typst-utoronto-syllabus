@@ -40,40 +40,48 @@
       },
     )
 
-    let body = layout(size => {
-      block(
+    layout(size => {
+      let body = block(
         width: size.width,
         breakable: true,
 
         it.body,
       )
-    })
 
-    // We need to measure the height of the annotation and body. If the
-    // body is shorter than the annotation, it needs to be placed in a block with a forced height so
-    // that subsequent items don't overlap with the annotation.
-    context {
-      let annotation_height = measure(annotation).height
-      let body_height = measure(body).height
-      // This helps the heading and the attached paragraph stay on the same page.
-      // TODO: find a better solution.
-      block(breakable: false)
-      if body_height < annotation_height {
-        // If the body is shorter than the annotation, we need to pad it to the height of the annotation
-        place(annotation, dx: -opts.gutter_width)
-        block(height: annotation_height, breakable: true, {
+      // We need to measure the height of the annotation and body. If the
+      // body is shorter than the annotation, it needs to be placed in a block with a forced height so
+      // that subsequent items don't overlap with the annotation.
+      block(context {
+        v(.4em)
+        let annotation_height = measure(annotation).height
+        let body_height = measure(body).height
+        //[#(annotation_height, body_height)]
+        if body_height < annotation_height {
+          // If the body is shorter than the annotation, we need to pad it to the height of the annotation
+          place(annotation, dx: -opts.gutter_width)
+          block(height: annotation_height, breakable: true, {
+            body
+          })
+        } else {
+          place(annotation, dx: -opts.gutter_width)
           body
-        })
-      } else {
-        place(annotation, dx: -opts.gutter_width)
-        body
-      }
-    }
+        }
+      })
+    })
   }),
 
   fields: (
     e.field("title", e.types.option(content), doc: "The title of the item"),
-    e.field("subtitle", e.types.option(content), doc: "Additional description appearing below the title"),
-    e.field("body", content, doc: "The descriptive test that will be shown inline in the document", required: true),
+    e.field(
+      "subtitle",
+      e.types.option(content),
+      doc: "Additional description appearing below the title",
+    ),
+    e.field(
+      "body",
+      content,
+      doc: "The descriptive test that will be shown inline in the document",
+      required: true,
+    ),
   ),
 )

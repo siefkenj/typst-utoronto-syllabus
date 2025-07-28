@@ -244,7 +244,12 @@ There are several lecture sections. (R means Thursday)
     stroke: 0.5pt,
     columns: (auto, auto, auto, auto, 1fr, auto),
     table.header([Section], [Time], [Room], [Instructor], [Email], [Office]),
-    [LEC0101], [W9--11, F10--11], [MB 100], [B.~Galvão-Sousa], [#link("some-prof@math.toronto.edu")], [BA 1114],
+    [LEC0101],
+    [W9--11, F10--11],
+    [MB 100],
+    [B.~Galvão-Sousa],
+    [#link("some-prof@math.toronto.edu")],
+    [BA 1114],
   ))
 }
 
@@ -262,6 +267,7 @@ _practice_. Thus, you shouldn't expect to go over every tutorial problem
 during a tutorial.
 
 
+#pagebreak()
 == Academic Resources
 
 #v(.5em)
@@ -272,7 +278,7 @@ during a tutorial.
   The University of Toronto is committed to accessibility.
   If you require accommodations for a disability, or
   have any accessibility concerns about the course, the classroom or course materials,
-  please contact Accessibility Services #link("http://www.studentlife.utoronto.ca") as soon as possible.
+  please contact Accessibility Services #link("http://www.studentlife.utoronto.ca") as soon as possible, really.
 ]
 
 #s.annotated_item(
@@ -327,7 +333,7 @@ of your college registrar.
 == Schedule
 
 Below is a preliminary schedule for the course.
-
+#set text(size: .6em)
 #let reading(it) = s.get_setting("colors", map: colors => text(fill: colors.tertiary, it))
 
 #s.timetable(week_start_day: "monday", weekly_data: (
