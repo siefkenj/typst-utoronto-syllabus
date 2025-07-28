@@ -21,7 +21,7 @@
 
 /// Type of a basic_info item
 #let basic_info_type = e.types.declare(
-  "basic-info-item",
+  "basic_info_item",
   prefix: PREFIX,
   doc: "A basic information item for the syllabus, such as the textbook or course webpage.",
 
@@ -55,7 +55,7 @@
 /// A type that declares a font function. This can be coerced
 /// from a string, an array of strings, or a function that returns `content`.
 #let fond_declaration = e.types.declare(
-  "font-declaration",
+  "font_declaration",
   prefix: PREFIX,
   doc: "A type that declares a font function. This can be coerced from a string, an array of strings, or a function that returns `content`.",
   fields: (

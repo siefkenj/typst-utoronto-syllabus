@@ -5,7 +5,7 @@
 
 /// Display a user's content and any events that they have specified for a week.
 #let content_and_events = e.element.declare(
-  "content-and-events",
+  "content_and_events",
   prefix: PREFIX,
   doc: "A block that includes content and events for a particular week",
   display: it => e.get(get => {
@@ -157,7 +157,7 @@
     })
     let before_classes = if before_classes_events.len() > 0 {
       (
-        text(font: opts.font_sans, size: 1.2em, baseline: -.3em, [Before Classes]),
+        sans(text(size: 1.2em, baseline: -.3em, [Before Classes])),
         content_and_events(events: before_classes_events),
       )
     } else { () }
@@ -189,7 +189,7 @@
             {
               align(horizon, stack(
                 spacing: 0.3em,
-                (opts.font_sans.font)(text(size: 1.2em, [Week #data.week_num])),
+                sans(text(size: 1.2em, [Week #data.week_num])),
                 text(fill: gray.darken(20%), format_week_range(
                   start: data.bounds.start,
                   end: data.bounds.end,

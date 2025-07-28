@@ -22,13 +22,19 @@
 
 /// Get a formatted version of the date of an event. The events are defined in the `settings`
 /// object.
-#let get_event_time(event_name) = {
+///
+/// -> str | content
+#let get_event_time(
+  /// The name of the event. This will correspond to the string you set as the `key` in the `settings.events` or `settings.holidays`.
+  /// -> str
+  event_name,
+) = {
   // We search for events as keys in the settings,
   // then in `settings.events`, then in `settings.holidays`.
   e.get(get => {
     let opts = get(settings)
     let event = opts.at(event_name, default: NOT_FOUND_SENTINEL)
-    if event != NOT_FOUND_SENTINEL {
+    if event != NOT_FOUND_SENTINEL and event != none {
       return format_date(event)
     }
     // Not found in the settings, so we look in the events and holidays
@@ -41,12 +47,15 @@
 
     let event = all_events.find(e => e.key == event_name)
     if event == none {
-      return text(fill: red, [
-        WARNING: Event "#text(fill: gray, event_name)" not found. Valid event names are given as `key`s
-        in the `settings` object. Currently specified events are: #(
-          all_event_names.map(e => ["#text(fill: gray, raw(e))"]).join(", ")
-        )
-      ])
+      return text(
+        fill: red,
+        [
+          WARNING: Event "#text(fill: gray, event_name)" not found. Valid event names are given as `key`s
+          in the `settings` object. Currently specified events are: #(
+            all_event_names.map(e => ["#text(fill: gray, raw(e))"]).join(", ")
+          )
+        ],
+      )
     }
 
 

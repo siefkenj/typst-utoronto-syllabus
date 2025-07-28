@@ -3,7 +3,7 @@
 
 /// Smallcaps text that is meant to appear as a heading used in the gutter of the syllabus.
 #let gutter_label = e.element.declare(
-  "gutter-label",
+  "gutter_label",
   prefix: PREFIX,
   doc: "A label for the gutter of the syllabus.",
   display: it => box(baseline: 50%, block(breakable: false, {
@@ -20,7 +20,7 @@
 
 /// A divider for sections in the syllabus.
 #let section_divider = e.element.declare(
-  "section-divider",
+  "section_divider",
   prefix: PREFIX,
   doc: "A divider for sections in the syllabus.",
   display: it => e.get(get => {

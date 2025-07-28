@@ -118,7 +118,7 @@ syllabus_settings(
     tutorial_start_date: none or datetime,
     /// [optional] Basic information to be displayed at the start
     /// of the syllabus. For example, the textbook, or course webpage.
-    basic_info: array of basic-info-item,
+    basic_info: array of basic_info_item,
     /// [optional] Events in the syllabus timetable, such as homeworks
     /// or midterms
     events: array of event,
@@ -128,11 +128,11 @@ syllabus_settings(
     /// [optional] Colors used in the syllabus
     colors: colors,
     /// [optional] Monospace font for links
-    font_mono: font-declaration,
+    font_mono: font_declaration,
     /// [optional] Sans-serif font for headings
-    font_sans: font-declaration,
+    font_sans: font_declaration,
     /// [optional] Serif font for body text
-    font: font-declaration,
+    font: font_declaration,
     /// [optional] Width of the gutter for the syllabus; this is where
     /// the section headings will be displayed
     gutter_width: length

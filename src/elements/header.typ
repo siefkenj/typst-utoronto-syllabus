@@ -4,7 +4,7 @@
 
 /// Header banner that displays the course name, term, and code.
 #let header_banner = e.element.declare(
-  "header-banner",
+  "header_banner",
   prefix: PREFIX,
   doc: "A header banner for the syllabus.",
   display: it => e.get(get => {
@@ -29,7 +29,7 @@
 
 /// A table for displaying basic information in the syllabus.
 #let basic_info_table = e.element.declare(
-  "basic-info-table",
+  "basic_info_table",
   prefix: PREFIX,
   doc: "A table for displaying basic information in the syllabus.",
   display: it => e.get(get => {
