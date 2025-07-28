@@ -71,7 +71,9 @@
 ///
 /// -> content
 #let format_week_range(start: datetime.today(), end: datetime.today()) = {
-  let start_formatted = start.display("[month repr:long]") + [~] + start.display("[day padding:none]")
+  let start_formatted = (
+    start.display("[month repr:long]") + [~] + start.display("[day padding:none]")
+  )
   let multi_month = start.month() != end.month()
   let end_formatted = if multi_month {
     end.display("[month repr:long]") + [~] + end.display("[day padding:none]")
@@ -87,7 +89,8 @@
   /// -> event
   ev,
 ) = {
-  let (_, ev) = e.types.cast(ev, event)
+  let (success, ev) = e.types.cast(ev, event)
+  assert(success, message: if not success { ev } else { "" })
   let start = ev.date
   let has_hours = start.hour() != none
 
@@ -97,22 +100,57 @@
     let multi_day_event = start.day() != end.day()
 
 
-    if multi_day_event == false and has_hours {
-      format_date(start) + " from " + format_hours(start) + " to " + format_hours(end)
-    } else if multi_day_event {
+    if multi_day_event {
       if has_hours {
         (
-          format_date(start) + " at " + format_hours(start) + " to " + format_date(end) + " at " + format_hours(end)
+          format_date(start)
+            + " at "
+            + format_hours(start)
+            + " to "
+            + format_date(end)
+            + " at "
+            + format_hours(end)
         )
       } else {
         format_date(start) + " to " + format_date(end)
       }
+    } else {
+      if has_hours {
+        format_date(start) + " from " + format_hours(start) + " to " + format_hours(end)
+      } else {
+        format_date(start)
+      }
     }
   } else {
+    // We have no duration
     if has_hours {
       format_date(start) + " at " + format_hours(start)
     } else {
       format_date(start)
     }
   }
+
+  //   if multi_day_event == false and has_hours {
+  //     format_date(start) + " from " + format_hours(start) + " to " + format_hours(end)
+  //   } else if multi_day_event {
+  //     if has_hours {
+  //       (
+  //         format_date(start)
+  //           + " at "
+  //           + format_hours(start)
+  //           + " to "
+  //           + format_date(end)
+  //           + " at "
+  //           + format_hours(end)
+  //       )
+  //     } else {
+  //       format_date(start) + " to " + format_date(end)
+  //     }
+  //   }
+  // } else {
+  //   if has_hours {
+  //     format_date(start) + " at " + format_hours(start)
+  //   } else {
+  //     format_date(start)
+  //   }
 }
