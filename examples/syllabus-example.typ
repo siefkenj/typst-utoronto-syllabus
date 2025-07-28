@@ -244,10 +244,7 @@ There are several lecture sections. (R means Thursday)
     stroke: 0.5pt,
     columns: (auto, auto, auto, auto, 1fr, auto),
     table.header([Section], [Time], [Room], [Instructor], [Email], [Office]),
-    [LEC0101], [W9--11, F10--11], [MB 128], [B.~Galvão-Sousa], [#link("beni@math.toronto.edu")], [PG 114],
-    [LEC0201], [W11--1, F11--12], [MB 128], [B.~Galvão-Sousa], [#link("beni@math.toronto.edu")], [PG 114],
-    [LEC0301], [W1--3, F2--3], [MP 202], [J. Siefken], [#link("admin244@math.toronto.edu")], [PG 101C],
-    [LEC0401], [W3--5, F3--4], [MP 103], [J. Siefken], [#link("admin244@math.toronto.edu")], [PG 101C],
+    [LEC0101], [W9--11, F10--11], [MB 100], [B.~Galvão-Sousa], [#link("some-prof@math.toronto.edu")], [BA 1114],
   ))
 }
 
